@@ -24,7 +24,8 @@ module.exports = function (app, server) {
     const io = require('socket.io')(server, {
         cors: {
             origin: "http://127.0.0.1:5000",
-            methods: ["GET", "POST"]
+            methods: ["GET", "POST"] 
+            
         }
     })
 
@@ -88,4 +89,4 @@ module.exports = function (app, server) {
         console.log("server is listening on port", server.address().port);
     });
 
-}
+}  
