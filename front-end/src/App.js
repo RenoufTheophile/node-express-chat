@@ -64,6 +64,7 @@ const MessageBox = () => {
                    value={ value } onChange={ e => setValue(e.target.value) }
             />
         </form>
+        
     );
 
 };
@@ -93,6 +94,7 @@ const Chat = () => {
 
     return (
         <div>
+            
             <div id = "msgBox">
                 { messages.map((msg, index) => <Message msg={msg} />) }
             </div>

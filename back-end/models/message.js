@@ -14,7 +14,7 @@ const MessageSchema = mongoose.Schema({
     },
     pseudo : {
         type: String,
-        required: true,
+        required: false,
         minLength: 1,
     }
 });
