@@ -11,6 +11,11 @@ const MessageSchema = mongoose.Schema({
         type: String,
         required: true,
         minLength: 1,
+    },
+    pseudo : {
+        type: String,
+        required: true,
+        minLength: 1,
     }
 });
 
@@ -21,7 +26,8 @@ MessageSchema.statics.latest = (count) => {
 MessageSchema.statics.create = (content) => {
     let msg = new MessageModel({
         date: new Date(),
-        content: content
+        content: content,
+        pseudo: peseudo
     });
 
     return msg.save();

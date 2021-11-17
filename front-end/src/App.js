@@ -12,12 +12,34 @@ const Message = ({ msg }) => {
     return (
         <div className="msg">
             <span> { new Date(msg.date).toLocaleDateString() } </span>
+            <span> {msg.pseudo} </span>
             <span> { msg.content } </span>
         </div>
     );
 
 };
 
+const PseudoBox = () => {
+
+    const [value, setValue]= useState("");
+
+    const postPseudo = e => {
+        e.preventDefault();
+
+        if (!value) return;
+
+        socket.emit("pseudo", value);
+
+        setValue("");
+    };
+
+    return(
+        <form onSubmit={postPseudo}>
+            <input type="text" className="input" placeholder="pseudo"
+                    value={value} onChange={e => setValue(e.target.value)}/>
+        </form>
+    );
+}
 
 const MessageBox = () => {
 
@@ -33,7 +55,10 @@ const MessageBox = () => {
         setValue("");
     };
 
+    
+
     return (
+        
         <form onSubmit={ postMessage }>
             <input type="text" className="input" placeholder="message"
                    value={ value } onChange={ e => setValue(e.target.value) }
