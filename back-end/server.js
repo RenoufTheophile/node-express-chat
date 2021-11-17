@@ -3,6 +3,9 @@ const app = express();
 const server = require('http').Server(app);
 const port = normalizePort(process.env.PORT || '3000');
 
+
+
+
 app.set('port', port);
 
 // load app.js and let it do it's part of the initialization of app and server
