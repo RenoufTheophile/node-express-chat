@@ -85,7 +85,7 @@ module.exports = function (app, server) {
         }
     );
 
-    var server = http.listen(3000, () => {
+    var server = http.listen(6666, () => {
         console.log("server is listening on port", server.address().port);
     });
 

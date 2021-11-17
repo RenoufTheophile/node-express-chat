@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+     rel="stylesheet"
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+     crossorigin="anonymous"
+   />
+    <script
+     src="https://code.jquery.com/jquery-3.3.1.min.js"
+     crossorigin="anonymous"
+   ></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <div class="chatbox">
+      <div class="chatlogs">
+        <div class="chat" id="messages"></div>
+      </div>
+      <div class="chat-form">
+        <input id="name" class="form-control" placeholder="name" />
+        <br />
+        <textarea
+         id="message"
+         class="form-control"
+         placeholder="message"
+       ></textarea>
+        <br />
+        <button id="send">Send</button>
+      </div>
+    </div>
+
+    <script>
+      var socket = io();
+
+      // ========= Start of document ready function =======
+      $(() => {
+        $("#send").click(() => {
+          var message = {
+            name: $("#name").val(),
+            message: $("#message").val()
+          };
+          postMessage(message);
+        });
+        getMessage();
+      });
+      // ========= End of document ready function =========
+      socket.on("message", addMessage);
+
+      function addMessage(message) {
+        $("#messages").append(
+          `<p class="user-name"> ${message.name} </p> <p class="chat-message"> ${message.message} </p>`
+        );
+      }
+
+      function getMessage() {
+        $.get("http://localhost:2500/messages", data => {
+          data.forEach(addMessage);
+        });
+      }
+
+      function postMessage(message) {
+        $.post("http://localhost:2500/messages", message);
+      }
+    </script>
+  </body>
+</html>

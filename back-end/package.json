@@ -1,5 +1,5 @@
 {
-  "name": "back-end",
+  "name": "chat-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "^6.0.12",
-    "socket.io": "^4.3.1"
+    "mongoose": "^5.10.0",
+    "socket.io": "^2.3.0"
   }
 }
